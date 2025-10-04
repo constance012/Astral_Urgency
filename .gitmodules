@@ -1,0 +1,3 @@
+[submodule "CST_Unity_Shared_Resources"]
+	path = CST_Unity_Shared_Resources
+	url = https://github.com/constance012/CST_Unity_Shared_Resources.git
