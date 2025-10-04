@@ -1,4 +1,4 @@
-# LUDUM DARE 58 PLACEHOLDER ENTRY
+# ASTRAL URGENCY
 
 <p align="center">
   <img src="Ingame_Captures/Cover_Art.png" width="630" height="500">
