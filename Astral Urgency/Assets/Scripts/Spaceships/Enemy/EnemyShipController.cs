@@ -55,7 +55,7 @@ public class EnemyShipController : SpaceshipControllerBase
 		return velocity;
 	}
 	
-	protected virtual void OnDrawGizmosSelected()
+	protected override void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawWireSphere(rb2D.position, repelRange);

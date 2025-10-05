@@ -31,4 +31,6 @@ public abstract class SpaceshipControllerBase : MonoBehaviour
 	/// <param name="direction"></param>
 	/// <returns></returns>
 	protected abstract Vector2 UpdateVelocity(Vector2 direction, float speed);
+
+	protected virtual void OnDrawGizmosSelected() { }
 }

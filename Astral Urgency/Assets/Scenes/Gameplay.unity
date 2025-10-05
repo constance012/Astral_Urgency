@@ -1285,7 +1285,7 @@ MonoBehaviour:
   stats: {fileID: 11400000, guid: 97929c1a31c932f4aa6da56924f1ba28, type: 2}
   acceleration: 10
   deceleration: 7
-  steerSpeedRadian: 100
+  steerAngleDegree: 30
 --- !u!1 &1953816733
 GameObject:
   m_ObjectHideFlags: 0

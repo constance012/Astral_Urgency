@@ -10,6 +10,8 @@ public class PlayerShipController : SpaceshipControllerBase
 
 	private Transform _playerTransform;
 	private Vector3 _movementDirection;
+	private Vector3 _steerDirection;
+	private float _steerAngle;
 	private int _throttleValue;
 	private float _currentSpeed;
 	private float _maxSpeed;
@@ -57,24 +59,17 @@ public class PlayerShipController : SpaceshipControllerBase
 		return Vector2.zero;
 	}
 
-	Vector3 _steerDirection;
-
-	public void ReadInputValues()
+	private void ReadInputValues()
 	{
 #if ENABLE_LEGACY_INPUT_MANAGER
 		_throttleValue = LegacyInputManager.Instance.GetKey(KeybindingAction.MoveUp) ? 1 : 0;
+		_steerAngle = LegacyInputManager.Instance.GetAxisRaw("Horizontal") * -steerAngleDegree;
 #endif
-
-		Vector3 forwardDirection = _playerTransform.right * _throttleValue;
-		float steerAngle = LegacyInputManager.Instance.GetAxisRaw("Horizontal") * steerAngleDegree;
-		_steerDirection = Quaternion.Euler(0f, 0f, steerAngle) * forwardDirection;
-
-		_movementDirection = forwardDirection + _steerDirection;
-		_movementDirection.Normalize();
 	}
 
 	private void HandleMovement()
 	{
+		_movementDirection = ApplySteering(_playerTransform.right) * _throttleValue;
 		rb2D.linearVelocity = UpdateVelocity(_movementDirection);
 
 		if (rb2D.linearVelocity.sqrMagnitude < .01f)
@@ -84,13 +79,19 @@ public class PlayerShipController : SpaceshipControllerBase
 		}
 		else
 		{
-			Vector2 lookDirection = _throttleValue == 1 ? _movementDirection : _playerTransform.right;
+			Vector2 lookDirection = _throttleValue == 1 ? _movementDirection : ApplySteering(_playerTransform.right);
 			Vector2 aheadPosition = rb2D.position + lookDirection;
 			LookAt(aheadPosition);
 		}
 	}
 
-	private void OnDrawGizmosSelected()
+	private Vector3 ApplySteering(Vector3 forwardDirection)
+	{
+		_steerDirection = Quaternion.Euler(0f, 0f, _steerAngle) * _playerTransform.right;
+		return (forwardDirection + _steerDirection).normalized;
+	}
+
+	protected override void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.yellow;
 		Gizmos.DrawLine(rb2D.position, rb2D.position + (Vector2)_steerDirection);
