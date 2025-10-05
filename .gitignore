@@ -76,3 +76,6 @@ crashlytics-build.properties
 
 # macOS folder attribute
 .DS_Store
+
+# Unity AI Generated Assets
+[Gg]enerated[Aa]ssets/
