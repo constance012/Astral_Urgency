@@ -2,22 +2,23 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!78 &1
 TagManager:
-  serializedVersion: 2
-  tags: []
+  serializedVersion: 3
+  tags:
+  - WorldCanvas
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - HUD
+  - Enemy
+  - Interactable
+  - Projectile
+  - Asteroid
+  - Mothership
+  - Collectible
   - 
   - 
   - 
@@ -38,6 +39,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 4037119023
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: WorldObjects
+    uniqueID: 678181857
+    locked: 0
+  - name: UI
+    uniqueID: 304072285
+    locked: 0
+  m_RenderingLayers:
+  - Default
